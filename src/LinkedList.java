@@ -23,6 +23,19 @@ public class LinkedList {
         head = temp;
     }
 
+    /**
+     * Insert into middle
+     * @param data
+     * @param prev
+     */
+    public void insertAfter(String data, Node prev){
+        Node temp = new Node(data, prev.next);
+        prev.next = temp;
+
+
+    }
+
+
 
 
 

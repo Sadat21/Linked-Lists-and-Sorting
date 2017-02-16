@@ -20,7 +20,7 @@ public class AnagramSorter {
         char storage [];
         InsertionSort sort = new InsertionSort();
         storage = x.toCharArray();
-        sort.insertionSort(storage);
+        sort.sortChars(storage);
 
         return new String(storage);
     }
@@ -34,7 +34,7 @@ public class AnagramSorter {
      */
     public static void main (String [] args){
 
-        Vector main = new Vector();
+        Vector main_array = new Vector();
 
         //Putting the words into the main array
         try{
@@ -44,21 +44,21 @@ public class AnagramSorter {
             BufferedReader buff = new BufferedReader(new FileReader(filePath));
 
             while( (word = buff.readLine()) != null ){
-                if(main.getSize() == 0){
+                if(main_array.getSize() == 0){
                     Node temp_node = new Node(word, null);
                     LinkedList temp_list = new LinkedList(temp_node);
-                    main.add(temp_list);
+                    main_array.add(temp_list);
                 }
                 else {
                     boolean cont = true;
 
-                    for (int i = 0; cont && i < main.getSize(); i++) {
-                        String temp_data = main.getLinkedList(i).head.data;
+                    for (int i = 0; cont && i < main_array.getSize(); i++) {
+                        String temp_data = main_array.getLinkedList(i).head.data;
                         if( temp_data.length() == word.length() ){
                             String temp1 = charSort(temp_data);
                             String temp2 = charSort(word);
                             if(temp1.compareTo(temp2) == 0){
-                                main.getLinkedList(i).add(word);
+                                main_array.getLinkedList(i).add(word);
                                 cont = false;
                             }
                         }
@@ -67,7 +67,7 @@ public class AnagramSorter {
                     if(cont == true){
                         Node temp_node = new Node(word, null);
                         LinkedList temp_list = new LinkedList(temp_node);
-                        main.add(temp_list);
+                        main_array.add(temp_list);
                     }
                 }
 
@@ -80,6 +80,13 @@ public class AnagramSorter {
 
         }
 
+        //Sort the linked lists
+        InsertionSort sort_lists = new InsertionSort();
+        for( int i = 0; i < main_array.getSize(); i++)
+        {
+            main_array.setIndex( sort_lists.sortLinkedLists( main_array.getLinkedList(i)), i );
+        }
+
 
 
         //Output main Array
@@ -88,9 +95,9 @@ public class AnagramSorter {
         try
         {
             FileWriter writer = new FileWriter(args[1]);
-            for( int i = 0; i < main.getSize(); i++)
+            for( int i = 0; i < main_array.getSize(); i++)
             {
-                Node temp = main.getLinkedList(i).head;
+                Node temp = main_array.getLinkedList(i).head;
                 do {
                     writer.write(temp.data + " ");
                     temp = temp.next;

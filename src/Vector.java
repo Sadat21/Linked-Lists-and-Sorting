@@ -45,4 +45,8 @@ public class Vector {
     public LinkedList getLinkedList(int index){
         return storageM[index];
     }
+
+    public void setIndex(LinkedList x, int i){
+        storageM[i] = x;
+    }
 }
