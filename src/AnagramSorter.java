@@ -1,6 +1,4 @@
 import java.io.*;
-
-
 /**
  * Created by Sadat Msi on 2/5/2017.
  *
@@ -12,27 +10,31 @@ import java.io.*;
  *  4: Words in a line are separated by a single space.
  */
 public class AnagramSorter {
-
-
-    public static String charSort(String x){
+    /**
+     * Checks if an String is greater then 1, and returns a sorted array as a string.
+     * @param x String to be sorted based on it's chars
+     * @return
+     */
+    public static String stringSort(String x){
         if(x.length() == 1) { return x; }
 
         char storage [];
         InsertionSort sort = new InsertionSort();
         storage = x.toCharArray();
         sort.sortChars(storage);
-
         return new String(storage);
     }
 
 
-
-
     /**
-     *
-     * @param args
+     * Fufills the requirements stated in the class description
+     * @param args (input file, output file)
      */
     public static void main (String [] args){
+
+        //Start the timer
+        System.out.println("Sorting the " + args[0] + " file and will put it in the " + args[1] + " file.");
+        long start = System.nanoTime();
 
         Vector main_array = new Vector();
 
@@ -53,12 +55,12 @@ public class AnagramSorter {
                     boolean cont = true;
 
                     for (int i = 0; cont && i < main_array.getSize(); i++) {
-                        String temp_data = main_array.getLinkedList(i).head.data;
+                        String temp_data = main_array.storageM[i].head.data;
                         if( temp_data.length() == word.length() ){
-                            String temp1 = charSort(temp_data);
-                            String temp2 = charSort(word);
+                            String temp1 = stringSort(temp_data);
+                            String temp2 = stringSort(word);
                             if(temp1.compareTo(temp2) == 0){
-                                main_array.getLinkedList(i).add(word);
+                                main_array.storageM[i].add(word);
                                 cont = false;
                             }
                         }
@@ -80,13 +82,22 @@ public class AnagramSorter {
 
         }
 
+
         //Sort the linked lists
         InsertionSort sort_lists = new InsertionSort();
         for( int i = 0; i < main_array.getSize(); i++)
         {
-            main_array.setIndex( sort_lists.sortLinkedLists( main_array.getLinkedList(i)), i );
+            main_array.setIndex( sort_lists.sortLinkedLists( main_array.storageM[i]), i );
         }
 
+        //Sort the Vector
+        QuickSort sort = new QuickSort();
+        sort.quickSort(main_array);
+
+        //End the timer
+        long end = System.nanoTime();
+        long time_elapsed = end - start;
+        System.out.println("Time taken is: " + (time_elapsed * 1E-9) + " seconds to load and sort the array.");
 
 
         //Output main Array
@@ -97,7 +108,7 @@ public class AnagramSorter {
             FileWriter writer = new FileWriter(args[1]);
             for( int i = 0; i < main_array.getSize(); i++)
             {
-                Node temp = main_array.getLinkedList(i).head;
+                Node temp = main_array.storageM[i].head;
                 do {
                     writer.write(temp.data + " ");
                     temp = temp.next;
@@ -106,21 +117,11 @@ public class AnagramSorter {
                 writer.write("\r\n");
 
             }
-
             writer.close();
 
-
-
-
-
         } catch(IOException e){
-            e.printStackTrace();
+            System.err.println("An IOException was caught: " + e.getMessage());
         }
-
-
-
-
-
 
 
     }

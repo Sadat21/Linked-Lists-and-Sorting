@@ -4,12 +4,22 @@
  * User created linkedList class
  */
 public class LinkedList {
+    /**
+     * Points to the first node
+     */
     public Node head;
 
+    /**
+     * Constructs an empty Linked List
+     */
     public LinkedList(){
         this.head = null;
     }
 
+    /**
+     * Constructor that makes the newNode the first element
+     * @param newNode
+     */
     public LinkedList(Node newNode){
         this.head = newNode;
     }
@@ -24,20 +34,13 @@ public class LinkedList {
     }
 
     /**
-     * Insert into middle
-     * @param data
-     * @param prev
+     * Insert into middle or end of a linked list
+     * @param data data to be inserted
+     * @param prev Node that will precede the data to be inserted
      */
     public void insertAfter(String data, Node prev){
         Node temp = new Node(data, prev.next);
         prev.next = temp;
-
-
     }
-
-
-
-
-
 
 }

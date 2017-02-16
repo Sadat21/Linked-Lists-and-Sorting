@@ -1,13 +1,24 @@
 /**
+ * User created Vector Class
  * Created by Sadat Msi on 2/9/2017.
  */
 public class Vector {
-
+    /**
+     * Size of the Vector
+     */
     private int sizeM;
+    /**
+     * Max capacity of the current Vector
+     */
     private int capM;
-    private LinkedList [] storageM;
+    /**
+     * Data structure to hold the refereces of linked lists
+     */
+    public LinkedList [] storageM;
 
-
+    /**
+     * Constructs an empty vector with a capacity of 1
+     */
     public Vector(){
         this.sizeM = 0;
         this.capM = 1;
@@ -15,7 +26,10 @@ public class Vector {
 
     }
 
-
+    /**
+     * Adds a new Linked List reference to the end of the vector, expands vector if there is no space
+     * @param newList
+     */
     public void add(LinkedList newList){
         if(sizeM + 1 > capM)
         {
@@ -38,14 +52,19 @@ public class Vector {
 
     }
 
+    /**
+     * Returns the size of the vector
+     * @return sizeM
+     */
     public int getSize(){
         return sizeM;
     }
 
-    public LinkedList getLinkedList(int index){
-        return storageM[index];
-    }
-
+    /**
+     * Set's an index of the Vector with a Linked List reference
+     * @param x Linked List reference to be inserted
+     * @param i index of the vector
+     */
     public void setIndex(LinkedList x, int i){
         storageM[i] = x;
     }

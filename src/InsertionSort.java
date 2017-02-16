@@ -1,10 +1,11 @@
 /**
+ * Uses insertion sort to sort a linked list or an array of chars
  * Created by Sadat Msi on 2/5/2017.
  */
 public class InsertionSort {
 
     /**
-     *
+     * Sorts a linked list into lexicographic order
      * @param x
      */
     public LinkedList sortLinkedLists(LinkedList x)
