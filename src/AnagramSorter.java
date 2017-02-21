@@ -16,15 +16,14 @@ public class AnagramSorter {
      * @return
      */
     public static String stringSort(String x){
-        if(x.length() == 1) { return x; }
+        if(x.length() == 1) { return x; }       //2 op
 
-        char storage [];
-        InsertionSort sort = new InsertionSort();
-        storage = x.toCharArray();
-        sort.sortChars(storage);
-        return new String(storage);
+        char storage [];                        //1 op
+        InsertionSort sort = new InsertionSort();   // 1 op
+        storage = x.toCharArray();              //3 op
+        sort.sortChars(storage);                // 3 op
+        return new String(storage);             // 3 op
     }
-
 
     /**
      * Fufills the requirements stated in the class description
@@ -54,11 +53,11 @@ public class AnagramSorter {
                 else {
                     boolean cont = true;
 
-                    for (int i = 0; cont && i < main_array.getSize(); i++) {
-                        String temp_data = main_array.storageM[i].head.data;
-                        if( temp_data.length() == word.length() ){
-                            String temp1 = stringSort(temp_data);
-                            String temp2 = stringSort(word);
+                    for (int i = 0; cont && i < main_array.getSize(); i++) {    //1 op to intitalize, 4ops each iteration
+                        String temp_data = main_array.storageM[i].head.data;    //5 ops
+                        if( temp_data.length() == word.length() ){              //5 ops
+                            String temp1 = stringSort(temp_data);               //3 ops
+                            String temp2 = stringSort(word);                    //3 ops
                             if(temp1.compareTo(temp2) == 0){
                                 main_array.storageM[i].add(word);
                                 cont = false;
@@ -79,9 +78,9 @@ public class AnagramSorter {
         }
         catch (IOException e){
             System.err.println("An IOException was caught: " + e.getMessage());
+            System.exit(1);
 
         }
-
 
         //Sort the linked lists
         InsertionSort sort_lists = new InsertionSort();
@@ -122,9 +121,5 @@ public class AnagramSorter {
         } catch(IOException e){
             System.err.println("An IOException was caught: " + e.getMessage());
         }
-
-
     }
-
-
 }

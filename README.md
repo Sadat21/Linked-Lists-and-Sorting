@@ -1,5 +1,8 @@
 # Linked-Lists-and-Sorting
 Assign 2 for CPSC 319
+By Sadat Islam
+Date: 02/17/2017
+
 
 This program will give you the time to sort an input file into alphabetical order and group all the anagrams together in alphabetical order. Anagrams will be displayed on the
 same line.

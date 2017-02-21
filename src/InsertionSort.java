@@ -40,12 +40,12 @@ public class InsertionSort {
      */
     public void sortChars(char [] arr)
     {
-        for( int i = 1, j; i < arr.length; i++)
+        for( int i = 1, j; i < arr.length; i++)     //2 op intitally, k loops of 2 ops
         {
-            char temp = arr[i];
-            for( j = i; j > 0 && temp < arr[j - 1]; j--)
-                arr[j] = arr[j - 1];
-            arr[j] = temp;
+            char temp = arr[i];                     // 2 ops
+            for( j = i; j > 0 && temp < arr[j - 1]; j--)  // 1 op, k loops of 4 ops
+                arr[j] = arr[j - 1];                // 3 ops
+            arr[j] = temp;                          // 3 ops
         }
     }
 }

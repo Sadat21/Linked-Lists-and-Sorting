@@ -57,7 +57,6 @@ public class QuickSort {
         swap(arr, arr.getSize() - 1, max);
         quickSort( arr, 0, arr.getSize() - 2);
 
-
     }
 
     /**

@@ -49,7 +49,6 @@ public class Vector {
             storageM[sizeM] = newList;
             sizeM++;
         }
-
     }
 
     /**
